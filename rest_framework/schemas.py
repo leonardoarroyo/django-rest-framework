@@ -108,7 +108,10 @@ class SchemaGenerator(object):
             if category is None:
                 content[action] = link
             elif category in content:
-                content[category][action] = link
+                if action in content[category]:
+                  content[category]["{}-{}".format(action, method)] = link
+                else:
+                  content[category][action] = link
             else:
                 content[category] = {action: link}
 
